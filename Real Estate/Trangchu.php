@@ -1,5 +1,13 @@
+<?php
+require_once __DIR__ . "/../account data/header.php";
+?>
 <!DOCTYPE HTML>
 <html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </head>
     <style>
         *{box-sizing: border-box;}
         html,body{background-color: rgb(44, 44, 44); margin: 0 auto; top: 0; z-index: -1; user-select: none;}
@@ -45,11 +53,45 @@
             font-family: serif;
             transition: 1s ease-in-out;
             overflow: hidden;
-            font-size: 200px;
+            font-size: 90px;
             position: relative;
             opacity: 0;
-            right: 10%;
-            translate: 0 250%;
+            translate: -50% 50%;
+            font-family: 'Noto Serif', serif;
+        }
+        #intro-button-container{
+            opacity: 0;
+            translate: -150%;
+            top: 80%;
+            position: absolute;
+            width: 270px;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #intro-btn1{
+            background-color: white;
+        }
+        #intro-btn2{
+            background-color: rgba(255, 255, 255, 0.4);
+            color: white;
+        }
+        .intro-button{
+            border: none;
+            border-radius: 10px;
+            width: 130px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+            transition: .4s ease-in-out;
+            cursor: pointer;
+        }
+        .intro-button:hover{
+            scale: 1.03;
+            transition: .4s ease-in-out;
         }
         #intro-content{
             padding-top: 70px;
@@ -686,13 +728,18 @@
             transition: 3.5s ease-in-out;
         }
         #head-show.animate{
-            translate: 0 -100%;
+            translate: 0 -150%;
             transition: 1s ease-in-out;
         }
         #head-h1.animate{
             opacity: 1;
-            translate: 0 130%;
-            transition: 1.2s ease-in-out;
+            translate: -10% 50%;
+            transition: 2s ease-in-out;
+        }
+        #intro-button-container.animate{
+            translate: -35%;
+            opacity: 1;
+            transition: 3.2s ease-in-out;
         }
         #head-h2.animate{
             position: absolute;
@@ -789,12 +836,27 @@
         </div>
         <div id="menu_func">
             <div id="menu_op">
-            <div class="menu-op-section"><a href="../manage/product/product.php" style="text-decoration: none; color: inherit;">Bộ lọc</a></div>
-            <div class="menu-op-section" id="Project"><li>Dự án</li></div>
-            <div class="menu-op-section"><li>Tin Tức</li></div>
-            <div class="menu-op-section"><a href="../account data/login.html" style="text-decoration: none; color: inherit;">Đăng Nhập</a></div>
+                <div class="menu-op-section">
+                    <a href="../manage/product/product.php">Explore</a>
+                </div>
+                <div class="menu-op-section">Project</div>
+                <div class="menu-op-section">News</div>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <div class="menu-op-section">
+                    👤Welcome, <?= htmlspecialchars($_SESSION['username']) ?>
+                    </div>
+                    <div class="menu-op-section">
+                        <a href="/Real%20Estate/account%20data/logout.php">Logout</a>
+                    </div>
+                <?php else: ?>
+                    <div class="menu-op-section">
+                        <a href="/Real%20Estate/account%20data/log.php">Login</a>
+                </div>
+                    <div class="menu-op-section">
+                        <a href="/Real%20Estate/account%20data/reg.php">Register</a>
+                </div>
+                <?php endif; ?>
             </div>
-        </div>
         </div>
     </div>
         </section>
@@ -803,6 +865,10 @@
                 <div id="head-show"></div>
                 <div id="intro">
                 <h1 id="head-h1">SkyLine</h1>
+                <div id="intro-button-container">
+                    <div class="intro-button" id="intro-btn1">Contact us for free</div>
+                    <div class="intro-button" id="intro-btn2"><a href="../manage/product/product.php" style="text-decoration: none; color: inherit;">Explore more</a></div>
+                </div>
                     <div id="intro-content">           
                         <h2 id="head-h2">HOLISTIC LUXURY REAL ESTATE</h2>
                         <p id="head-p">Welcome to Skyline Residence</p>
@@ -958,6 +1024,7 @@ const headObserver =  new IntersectionObserver(entries =>{
             document.getElementById("head-h1").classList.add("animate");
             document.getElementById("head-h2").classList.add("animate");
             document.getElementById("head-p").classList.add("animate");
+            document.getElementById("intro-button-container").classList.add("animate");
         }else{
             headshow.classList.remove("animate");
             document.getElementById("menu_bar").classList.remove("animate");

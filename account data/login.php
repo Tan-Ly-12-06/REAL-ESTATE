@@ -1,32 +1,48 @@
 <?php
+session_set_cookie_params([
+    'path' => '/', // QUAN TRỌNG
+]);
+session_start();
+
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "user";
+$dbname = "RS_Database";
 
 $conn = new mysqli($host, $user, $password, $dbname);
-
-if($conn->connect_error){
-    die("Lỗi kết nối".$conn->error);
+if ($conn->connect_error) {
+    die("Lỗi kết nối " . $conn->connect_error);
 }
 
-$username = $_POST['username'];
-$userpassword = $_POST['user_password'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-$sql = "SELECT * FROM userdata WHERE username = '$username' AND user_password = '$userpassword'";
-$result = $conn->query($sql);
+    $username = $_POST['username'] ?? '';
+    $userpassword = $_POST['user_password'] ?? '';
 
-if($result->num_rows>0){
-    echo "Đăng nhập thành công";
-}else{
-    echo "Vui lòng kiểm tra lại tài khoản và mật khẩu";
+    
+    if ($username === "Admin" && $userpassword === "Operationer") {
+        $_SESSION['username'] = "Admin";
+        $_SESSION['role'] = "admin";
+
+        header("Location: /Real%20Estate/Real%20Estate/Trangchu.php");
+        exit;
+    }
+
+    
+    $sql = "SELECT * FROM userdata 
+            WHERE username='$username' 
+            AND user_password='$userpassword'";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['email'] = $row['email'];
+
+        header("Location: /Real%20Estate/Real%20Estate/Trangchu.php");
+        exit;
+    }
+
+    echo "Sai tài khoản hoặc mật khẩu";
 }
-
-
-
-if($username === "Admin" && $userpassword === "Operationer"){
-    header("Location: admin.html");
-    exit();
-}
-
-?>

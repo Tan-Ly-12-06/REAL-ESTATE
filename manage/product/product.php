@@ -1,8 +1,11 @@
 <?php
+require_once __DIR__ . "/../../account data/header.php";
+?>
+<?php
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "data";
+$dbname = "RS_Database";
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if($conn->connect_error){
@@ -41,34 +44,48 @@ if(!$project){
         </div>
         <div id="menu_func">
             <div id="menu_op">
-            <div class="menu-op-section"><a href="../../../Real Estate/Trangchu.html" style="text-decoration: none; color: inherit;">Trang chủ</a></div>
-            <div class="menu-op-section" style="cursor: pointer;" id="Bo-loc">Bộ lọc</div>
-            <div class="menu-op-section"><a href="../../../Real Estate/Trangchu.html" style="text-decoration: none; color: inherit;">Dự án</a></div>
-            <div class="menu-op-section"><a href="../../account data/login.html" style="text-decoration: none; color: inherit;">Đăng Nhập</a></div>
+                <div id="filters" class="menu-op-section">Filters</div>
+                <div class="menu-op-section">Project</div>
+                <div class="menu-op-section">News</div>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <div class="menu-op-section">
+                    👤Welcome, <?= htmlspecialchars($_SESSION['username']) ?>
+                    </div>
+                    <div class="menu-op-section">
+                        <a href="/Real%20Estate/account%20data/logout.php">Logout</a>
+                    </div>
+                <?php else: ?>
+                    <div class="menu-op-section">
+                        <a href="/Real%20Estate/account%20data/log.php">Login</a>
+                </div>
+                    <div class="menu-op-section">
+                        <a href="/Real%20Estate/account%20data/reg.php">Register</a>
+                </div>
+                <?php endif; ?>
             </div>
             <div id="menu_filter">
               <div id="filter">
                 <div id="type-container">
-                      <div id="sell">Bán</div>
-                      <div id="rent">Thuê</div>
+                      <div id="sell">Sell</div>
+                      <div id="rent">Rent</div>
                     </div>
-                <h3 style="position: relative; margin: auto; width: 280px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Bộ lọc bất động sản</h3>
+                <h3 style="position: relative; margin: auto; width: 280px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Filters</h3>
                   <div id="house-type">
-                    <h4 style="position: absolute; left: 10px; color: white;">Hình thức nhà</h4>
+                    <h4 style="position: absolute; left: 10px; color: white;">Type</h4>
                     <div id="type-select">
-                      Thuê
+                      Rent
                     </div>
                     <svg id="type-icon" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" fill="black" aria-hidden="true" width="20" height="20">
                         <path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/>
                     </svg>
                   </div>
                   <div id="Search">
-                    <strong style="color: white;">Lọc theo tên</strong>
+                    <strong style="color: white;">Search by name</strong>
                     <input type="text" id="Search-input">
                 </div>
                 <div id="price-container">
                   <div id="price-input">
-                    <h4 style="position: absolute; bottom: 20px; left: 0; color: white;">Giá</h4>
+                    <h4 style="position: absolute; bottom: 20px; left: 0; color: white;">Price</h4>
                   <input type="number" id="min" placeholder="đ 0">
                   <h3 style="color: black; font-weight: bold; text-align: center; display: flex; justify-content: center; padding-bottom: 3px;">-</h3>
                   <input type="number" id="max" placeholder="đ 100.000.000" value="100000000">
@@ -79,8 +96,8 @@ if(!$project){
                 </div>
                 </div>
                 <div id="price-reset">
-                  <button id="p-reset">Đặt lại</button>
-                  <button id="p-confirm">Xem kết quả</button>
+                  <button id="p-reset">Reset</button>
+                  <button id="p-confirm">Confirm</button>
                 </div>
               </div>
             </div>
@@ -386,7 +403,7 @@ if(!$project){
 
 //BANNER SLIDE
 const slides = document.querySelectorAll(".house");
-slides[2].classList.add("show");
+slides[0].classList.add("show");
 
 
 
@@ -449,7 +466,7 @@ slides[2].classList.add("show");
       document.getElementById("menu_filter").classList.remove("open");
       document.getElementById("filter").classList.remove("open");
     });
-    document.getElementById("Bo-loc").addEventListener('click', ()=>{
+    document.getElementById("filters").addEventListener('click', ()=>{
       document.getElementById("label-check").checked = false;
       document.getElementById("menu_filter").classList.toggle("open");
       document.getElementById("filter").classList.toggle("open");
@@ -470,13 +487,13 @@ slides[2].classList.add("show");
 
     rent.addEventListener('click', ()=>{
       maxDisplay.textContent = "100.000.000";
-      document.getElementById("type-select").textContent = "Thuê";
+      document.getElementById("type-select").textContent = "Rent";
       document.getElementById("type-container").classList.toggle("open");
       document.getElementById("type-icon").style.transform = "rotate(0deg)";
     });
     sell.addEventListener('click', ()=>{
       maxDisplay.textContent = "100.000.000.000";
-      document.getElementById("type-select").textContent = "Bán";
+      document.getElementById("type-select").textContent = "Sell";
       document.getElementById("type-container").classList.toggle("open");
       document.getElementById("type-icon").style.transform = "rotate(0deg)";
     });
@@ -571,11 +588,11 @@ slides[2].classList.add("show");
 
   //SIDE 
   if(rent.classList.contains("show")){
-    document.getElementById("type-select").textContent = "Thuê";
+    document.getElementById("type-select").textContent = "Rent";
     max.setAttribute("max", 1e6);
   }
   if(sell.classList.contains("show")){
-    document.getElementById("type-select").textContent = "Bán";
+    document.getElementById("type-select").textContent = "Sell";
     max.setAttribute("max", 1e11);
   }
 
