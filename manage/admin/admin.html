@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .label{
+            position: relative;
+            top: 10%;
+            left: 0;
+            display: inline-block;
+            font-size: 13px;
+            width: 100px;
+        }
+        .input{
+            height: 30px;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <form action="additem.php" method="POST">
+        <div style="display: flex; justify-content: space-evenly; padding-left: 50px; gap: 20px;">
+            <input type="text" name="product_id" class="input">       
+            <input type="text" name="product_name" class="input">       
+            <input type="text" name="product_price" class="input">
+            <input type="text" name="product_type" class="input">      
+            <input type="text" name="product_address" class="input">   
+            <input type="text" name="product_describe" class="input">    
+            <input type="text" name="product_size" class="input">          
+            <div>
+                <input type="file" name="product_img" placeholder="anh" class="input" class="anh">  
+                <input type="file" name="product_img1" placeholder="anh" class="input" class="anh">
+                <input type="file" name="product_img2" placeholder="anh" class="input" class="anh">
+                <input type="file" name="product_img3" placeholder="anh" class="input" class="anh">     
+            </div>
+            <input type="submit" value="Gửi">
+        </div>
+        <div style="display: flex; padding-left: 50px; gap: 105px;">
+            <label class="label">Nhập id nhà (VD: HCM, Hà Nội, HP,v...v)</label>
+            <label class="label">Nhập tên nhà (VD: nhà ở HCM)</label>
+            <label class="label">Nhập giá nhà (VD: 2 tỷ)</label>
+            <label class="label">Nhập hình thức (VD: thuê, bán)</label>
+            <label class="label">Mô tả nhà (VD: Phòng)</label>
+            <label class="label">Diện tích</label>
+            <label class="label">Chọn ảnh nhà</label>
+        </div>
+    </form>
+</body>
+</html>
