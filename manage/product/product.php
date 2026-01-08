@@ -33,7 +33,7 @@ if(!$project){
         <div style="display: flex; justify-content: flex-end; align-items: flex-end; flex-direction: row; height: 100px; width: 100%;">
         <div id="menu_text">
             <div id="menu_logo">
-                <a href="../../Real Estate/Trangchu.html" style="text-decoration: none; color: white; font-family: 'Times New Roman', Times, serif;">SkyLine</a>
+                <a href="../../Real Estate/Trangchu.php" style="text-decoration: none; color: white; font-family: 'Times New Roman', Times, serif;">SkyLine</a>
             </div>
             <input class="label-check" id="label-check" type="checkbox">
                <label for="label-check" class="hamburger-label" id="menu_1">
@@ -297,7 +297,6 @@ if(!$project){
     const introcon = document.getElementById("intro-con");
     minDisplay.textContent = "0";
     maxDisplay.textContent = "100.000.000";
-    house.classList.add("show");
     rent.classList.add("show");
     let index = 0;
     let match = [];
@@ -403,13 +402,11 @@ if(!$project){
 
 //BANNER SLIDE
 const slides = document.querySelectorAll(".house");
-slides[0].classList.add("show");
-
 
 
 
     if (slides.length > 0) {
-      let index = 2;
+      let index = 1;
       const slideWidth = slides[0].offsetWidth;
 
     function positionSlides() {
@@ -417,9 +414,11 @@ slides[0].classList.add("show");
         if(i === index){
         el.style.scale = "1.1";
         el.style.filter = "blur(0px) brightness(100%)";
+        el.classList.add("show");
         }else{
         el.style.scale = "0.9";
         el.style.filter = "blur(2px) brightness(70%)";
+        el.classList.remove("show");
         }
 
       el.style.transition = ".6s ease";
@@ -434,7 +433,7 @@ slides[0].classList.add("show");
       positionSlides();
   }
 
-  let slideTimer = setInterval(autoSlide, 5000);
+  let slideTimer = setInterval(autoSlide, 10000);
 
 
   slides.forEach((el, i) => {
@@ -444,7 +443,7 @@ slides[0].classList.add("show");
       el.classList.add("show");
       index = i;
       positionSlides();
-      slideTimer = setInterval(autoSlide, 5000);
+      slideTimer = setInterval(autoSlide, 10000);
     });
   });
 
@@ -522,8 +521,6 @@ slides[0].classList.add("show");
           eff1.classList.add("show");
           eff2.classList.add("show");
           introcon.classList.add("show");
-        }else{
-          document.getElementById("show").classList.remove("show");
         }
         });
     });

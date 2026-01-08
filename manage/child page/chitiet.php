@@ -24,6 +24,10 @@ if($result->num_rows>0){
 }else{
     echo "Chưa có thông tin";
 }
+
+while($row = $result->fetch_assoc()){
+                    $data[] = $row;
+}
 ?>
 <html>
     <head><link rel="stylesheet" href="childpage.css"></head>
@@ -36,22 +40,22 @@ if($result->num_rows>0){
 
         <div id="menu_bar"> 
         <div id="menu_logo">
-                <a href="../../Real Estate/Trangchu.php" style="text-decoration: none; color: white; font-family: 'Times New Roman', Times, serif;">SkyLine</a>
+                <a href="../../Real Estate/Trangchu.php" style="text-decoration: none; color: white; font-family: 'Times New Roman', Times, serif;">SL</a>
         </div>
-        <div id="menu_text">
-            <a href="../product/product.php" style="text-decoration: none; color: inherit;">Back</a>
-            <a href="../product/product.php" style="text-decoration: none; color: inherit;">News</a>
-        </div>         
+        <div id="menu_house_name">
+            <?php foreach($data as $row): ?>
+                <p><?= $row['product_name'] ?></p>
+            <?php endforeach; ?> 
+        </div>
+        <div class="menu-icon">E</div>         
+        <div class="menu-icon">N</div> 
         </div>
         </div>
         <div id="head">
                 <?php
-                while($row = $result->fetch_assoc()){
-                    $data[] = $row;
                     echo "
-                    <img style='postion: absolute; width: 1500px; height: 750px; filter: blur(5px);' src='../../pictures/".$row['product_img']."'>
+                    <img src='../../pictures/".$row['product_img']."'>
                     ";
-                }
                 ?>   
                 <div id="head-img-container">
                     <div class="img-container" id="anh1-container">
@@ -68,81 +72,46 @@ if($result->num_rows>0){
                             <img src="../../pictures/<?= $row['product_img1'] ?>">
                         <?php endforeach; ?>    
                     </div>
-
-
-                    <div class="img-container">
-                        <span></span>
+                </div>
+                <div id="container-info">
                         <?php foreach($data as $row): ?>
-                            <img src="../../pictures/<?= $row['product_img2'] ?>">
-                        <?php endforeach; ?>  
-                    </div>
-
-
-                    <div class="img-container">
-                        <span></span>
-                        <?php foreach($data as $row): ?>
-                            <img src="../../pictures/<?= $row['product_img3'] ?>">
-                        <?php endforeach; ?>  
+                            <img src="../../pictures/<?=$row['product_img']?>">
+                        <?php endforeach; ?>
+                    <div id="head-info-container">
+                        <?php foreach($result as $row): ?>
+                            <h3><?= $row['product_name'] ?></h3>
+                            <p><?= $row['product_address'] ?></p>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-                <div id="head-info-container">
-                <?php foreach($result as $row): ?>
-                    <h1><?= $row['product_name'] ?></h1>
-                    <h2><?= $row['product_type']?>: <?= $row['product_price'] ?></h2>
-                    <h3><?= $row['product_address'] ?></h3>
-                    <p class="describe"><?= $row['product_describe'] ?></p>
-                <?php endforeach; ?>
+                <div id="Recent-similar-real-estate">
+                    <h1>Find Similar <br>Luxurios Estate</h1>
+                    <p>Enhance your experience for what you desire</p>
+                    <div id="rs-icon-container">
+                        <?php foreach ($data as $row): ?>
+                        <div class="rs-icon" id="rsi-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em" fill="currentColor" style="vertical-align: middle;">
+                                <path d="M32 32c17.7 0 32 14.3 32 32v224h224v-128c0-17.7 14.3-32 32-32h160c53 0 96 43 96 96v224c0 17.7-14.3 32-32 32s-32-14.3-32-32v-64H64v64c0 17.7-14.3 32-32 32S0 465.7 0 448V64c0-17.7 14.3-32 32-32zm80 160a64 64 0 1 1 128 0 64 64 0 1 1-128 0z"/>
+                            </svg>
+                            Bedroom
+                        </div>
+                        <?php endforeach; ?>
+
+                        <?php foreach ($data as $row): ?>
+                        <div class="rs-icon" id="rsi-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="13" height="13" fill="currentColor" style="vertical-align: middle;">
+                                <path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3 3.5 0 6.9 1.4 9.4 3.9l14.9 14.9c-3.6 9.1-5.5 18.9-5.5 29.2 0 19.9 7.2 38 19.2 52-5.3 9.2-4 21.1 3.8 29 9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9-7.8-7.9-19.8-9.1-29-3.8-14-12-32.1-19.2-52-19.2-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0 66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32v48c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32v-16h256v16c0 17.7 14.3 32 32 32s32-14.3 32-32v-40.4c19.6-17.6 32-43.1 32-71.6v-48c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3z"/>
+                            </svg>
+                            Bathroom
+                        </div>
+                        <?php endforeach; ?>
+
+                        <?php foreach ($data as $row): ?>
+                        <div class="rs-icon"><?=$row['product_type']?></div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div id="rs-search">Search For Result</div>
                 </div>
         </div>
-        <script>
-            const images = document.querySelectorAll(".img-container img");
-            const text = document.querySelectorAll(".img-container span");
-            let index = 0;
-            const anh = document.getElementById("anh1");
-            anh.classList.add("show");
-
-            images.forEach((img, idx) => {
-                img.addEventListener('click', () => {
-                clearInterval(baseInterval);
-                images.forEach(el => el.classList.remove("show"));
-                text.forEach(t => t.textContent = "");
-                img.classList.add("show");
-                text[idx].textContent = "current image";
-                index = idx;
-                baseInterval = setInterval(interval, 5000);
-                });
-            });
-
-
-            function interval(){
-                index = (index + 1) % images.length;
-                images.forEach(i => i.classList.remove("show"));
-                text.forEach(t => t.textContent = "");
-                images[index].classList.add("show");
-                text[index].textContent = "current image";
-            }
-
-            let baseInterval = setInterval(() => {
-                interval();
-            }, 5000);
-
-
-            const heart = document.getElementById("heart");
-            const path = document.getElementById("heart-path");
-            let count = 0;
-
-            heart.addEventListener('click', () => {
-                if(count < 2){
-                    count++;
-                }
-                if(count == 1){
-                    path.style.fill = "red";
-                }
-                if(count == 2){
-                    path.style.fill = "black";
-                    count = 0;
-                }
-            });
-        </script>
     </body>
 </html>

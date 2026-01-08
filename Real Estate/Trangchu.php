@@ -10,13 +10,13 @@ require_once __DIR__ . "/../account data/header.php";
     </head>
     <style>
         *{box-sizing: border-box;}
-        html,body{background-color: rgb(44, 44, 44); margin: 0 auto; top: 0; z-index: -1; user-select: none;}
+        html,body{position: relative; margin: auto; background-color: rgb(44, 44, 44); z-index: -1; user-select: none; width: 10000px; max-width: 1500px;}
 
         #head{
             position: relative;
-            width: 100%;
+            width: 10000px;
             max-width: 1500px;  
-            height: 900px;
+            height: 800px;
             margin: auto;
             display: flex;
             bottom: 60px;
@@ -56,12 +56,12 @@ require_once __DIR__ . "/../account data/header.php";
             font-size: 90px;
             position: relative;
             opacity: 0;
-            translate: -50% 50%;
+            transform: translate(-50%, 50%);
             font-family: 'Noto Serif', serif;
         }
         #intro-button-container{
             opacity: 0;
-            translate: -150%;
+            transform: translate(150%);
             top: 80%;
             position: absolute;
             width: 270px;
@@ -103,12 +103,12 @@ require_once __DIR__ . "/../account data/header.php";
             height: 100px;
         }
         #intro-content h2{
-            translate: 0 1800%;
+            transform: translate(0, 1800%);
             opacity: 0;
             color: white;
         }
         #intro-content p{
-            translate: 0 3000%;
+            transform: translate(0, 3000%);
             opacity: 0;
             color: white;
         }
@@ -260,20 +260,21 @@ require_once __DIR__ . "/../account data/header.php";
         #body_1{
             width: 100%;
             max-width: 1500px;
-            height: 1000px;
-            margin: 0;
-            padding-top: 70px;
+            height: 800px;
+            margin: auto;
+            padding-top: 5px;
             display: flex;
             gap: 5px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
             flex-direction: column;
+            padding-bottom: 140px;
         }
         #about-us{
             position: relative;
-            margin: 0 auto;
-            width: 100%;
+            margin: auto;
+            width: 10000px;
             left: 0;
             max-width: 1500px;
             height: 1000px;
@@ -281,7 +282,6 @@ require_once __DIR__ . "/../account data/header.php";
             display: flex;
             padding-top: 100px;
             padding-left: 50px;
-            bottom: 100px;
             visibility: visible;
         }
         #about-us-img-container{
@@ -292,8 +292,9 @@ require_once __DIR__ . "/../account data/header.php";
             opacity: 0;
             transition: 1000ms ease-in-out;
             position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 20%;
+            bottom: 5%;
+            margin: auto;
         }
         #abimg-1{
             filter: brightness(50%);
@@ -345,7 +346,7 @@ require_once __DIR__ . "/../account data/header.php";
         #abi-span-1{
             position: absolute;
             top: 40%;
-            translate: -150%;
+            transform: translate(-150%);
             text-align: left;
             font-size: 50px;
             font-weight: bold;
@@ -362,7 +363,7 @@ require_once __DIR__ . "/../account data/header.php";
             justify-content: flex-start;
             padding-top: 70px;
             padding-left: 100px;
-            left: 30%;
+            left: 0%;
             color: white;
             bottom: 100px;
         }
@@ -379,7 +380,7 @@ require_once __DIR__ . "/../account data/header.php";
             position: relative;
             top: 13%;
             right: 10%;
-            translate: 10%;
+            transform: translate(10%);
             opacity: 0;
             transition: 1.25s ease-in-out;
         }
@@ -394,7 +395,7 @@ require_once __DIR__ . "/../account data/header.php";
             position: absolute;
             background-color: rgba(255, 255, 255, 0.8);
             color: white;
-            translate: 0 100%;
+            transform: translate(0, 100%);
             transition: 1s ease-in-out;
         }
         #about-us-main:hover{
@@ -404,7 +405,8 @@ require_once __DIR__ . "/../account data/header.php";
             overflow: hidden;
             margin: auto;
             position: relative;
-            width: 100%;
+            width: 1000000px;
+            max-width: 1500px;
             height: 900px;
         }
         #about-us-trust img{
@@ -430,7 +432,7 @@ require_once __DIR__ . "/../account data/header.php";
             text-align: center;
             opacity: 0;
             scale: 0.8;
-            translate: 0 10%;
+            transform: translate(0, 10%);
             transition: .5s ease-in-out;
             color: white;
         }
@@ -498,7 +500,7 @@ require_once __DIR__ . "/../account data/header.php";
             top: 70%;
         }
         #body_2{
-            width: 100%;
+            width: 10000px;
             max-width: 1500px;
             height: 800px;
             padding-top: 100px;
@@ -648,7 +650,7 @@ require_once __DIR__ . "/../account data/header.php";
         #footer{
             padding-top: 100px;
             display: flex;
-            width: 100%;
+            width: 10000px;
             height: 800px;
             max-width: 1500px;
             max-height: 1000px;
@@ -728,33 +730,33 @@ require_once __DIR__ . "/../account data/header.php";
             transition: 3.5s ease-in-out;
         }
         #head-show.animate{
-            translate: 0 -150%;
+            transform: translate(0, -150%);
             transition: 1s ease-in-out;
         }
         #head-h1.animate{
             opacity: 1;
-            translate: -10% 50%;
+            transform: translate(-10%, 50%);
             transition: 2s ease-in-out;
         }
         #intro-button-container.animate{
-            translate: -35%;
+            transform: translate(-35%);
             opacity: 1;
             transition: 3.2s ease-in-out;
         }
         #head-h2.animate{
             position: absolute;
             opacity: 1;
-            translate: 0 0;
+            transform: translate(0, 0);
             transition: 2.5s ease-in-out;
         }
         #head-p.animate{
             opacity: 1;
-            translate: 0 0;
+            transform: translate(0, 0);
             transition: 4s ease-in-out;
         }
         #about-us-img-container.show{
             opacity: 1;
-            translate: 0 0;
+            transform: translate(0, 0);
             transition: 1000ms ease-in-out;
         }
         #about-us-content h1.show{
@@ -762,7 +764,7 @@ require_once __DIR__ . "/../account data/header.php";
             transition: 1s ease-in-out;
         }
         #about-us-content p.show{
-            translate: 0;
+            transform: translate(0);
             opacity: 1;
             transition: 1.25s ease-in-out;
         }
@@ -771,19 +773,19 @@ require_once __DIR__ . "/../account data/header.php";
             transition: 1.2s ease-in-out;
         }
         #about-us-main.show{
-            translate: 0 0;
+            transform: translate(0, 0);
             transition: 1s ease-in-out;
         }
         #about-us-trust h1.appear{
             scale: 1;
             opacity: 1;
-            translate: 0 0;
+            transform: translate(0, 0);
             transition: .75s ease-in-out;
         }
         #about-us-trust p.appear{
             scale: 1;
             opacity: 0.7;
-            translate: 0 10%;
+            transform: translate(0, 10%);
             transition: .75s ease-in-out;
         }
         .visible{
@@ -795,7 +797,7 @@ require_once __DIR__ . "/../account data/header.php";
         }
         #abi-span-1.show{
             opacity: 1;
-            translate: 20%;
+            transform: translate(20%);
             transition: 1s ease-in-out;
         }
         #ab1.appear{
@@ -889,7 +891,7 @@ require_once __DIR__ . "/../account data/header.php";
                 </div>
             </div>
         </section>
-        <section style="width: 100%; height: 1000px; background-color: transparent; max-width: 1500px; position: relative; margin: auto;">
+        <section style="width: 100%; height: 800px; background-color: transparent; max-width: 1500px; position: relative; margin: auto;">
             <div id="about-us-trust">
                 <img src="pics/whyus.jpg">
                 <h1 id="ab-h1" style="color: white;">Why Choose Us</h1>
@@ -1026,13 +1028,7 @@ const headObserver =  new IntersectionObserver(entries =>{
             document.getElementById("head-p").classList.add("animate");
             document.getElementById("intro-button-container").classList.add("animate");
         }else{
-            headshow.classList.remove("animate");
             document.getElementById("menu_bar").classList.remove("animate");
-            document.getElementById("border").classList.remove("animate");
-            headshow.classList.remove("animate");
-            document.getElementById("head-h1").classList.remove("animate");
-            document.getElementById("head-h2").classList.remove("animate");
-            document.getElementById("head-p").classList.remove("animate");  
         }
     })
 })
@@ -1044,10 +1040,6 @@ const observer = new IntersectionObserver(entries =>{
             const about = ab.querySelectorAll("*");
             about.forEach(a =>(a.classList.add("show")));
             document.getElementById("about-us-next-btn").classList.add("visible");
-        }else{
-            const about = ab.querySelectorAll("*");
-            about.forEach(a =>(a.classList.remove("show")));
-            document.getElementById("about-us-next-btn").classList.remove("visible");
         }
     });
 },{
@@ -1058,8 +1050,6 @@ const spinObserve = new IntersectionObserver(entries =>{
     entries.forEach(entry =>{
         if(entry.isIntersecting){
             whyus.forEach(choose => choose.classList.add("appear"));
-        }else{
-            whyus.forEach(choose => choose.classList.remove("appear"));
         }
     });
 });
